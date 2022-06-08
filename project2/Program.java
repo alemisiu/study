@@ -1,5 +1,10 @@
-public class Program{
-    public static void main (String[] args) {
-        System.out.println("Hello world");
+public class Program {
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.a1 = CellValue.X;
+        game.a2 = CellValue.X;
+        game.printStatus();
     }
+
 }
