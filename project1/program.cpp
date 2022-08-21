@@ -1,54 +1,81 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <algorithm>
+
 using namespace std;
+
 int main()
 {
-   //    setlocale(LC_ALL,"Polish");
-   //    int wybor;
-   //     cout<< "wybierz 1 - tworzenie pliku" <<endl;
-   //      cout<< "wybierz 2 - wpisz do pliku"<< endl;
-   //       cout<< "wybierz 3 - ile wpłacone" <<endl;
-   //        cout<< "wybierz 4 - odczytaj zawartosc pliku "<< endl;
-   //        cout<< "wybierz 5 -kasowanie pliku" <<endl;
-   //        cout<< "wybierz 6- odczytaj po nazwisku"<<endl <<"dokonaj wyboru:";
-   //        cin>>wybor;
 
-   //        if(wybor == 1);
-   //        fstream plik;
-   //        plik.open("baza.txt",ios::in);
-   //        if(plik.is_open())
-   //        {
-   //           cout<<"plik jest jest ";
-   //           plik.close();
-   //           return true;
-   //           }
-   //           else{
-   //           cout<<"nie ma pliku - utworzy go";
-   //           ofstream utworz("baza.txt");
+    srand(time(NULL));
 
-   //           return false;
-   //           }
-   //        }
+    // liczba generowanych elementów
+    int count = 10;
 
-   // if(wybor ==2){
-   //    ofstream wpisz;//("baza.txt");
-   //    wpisz.open("baza.txt",ios::out(ios::in)
-   //    wpisz.seekp(0,ios::end);
-   //    string imie; int wplata;
-   //    cout<<"podaj imie" <<endl;
-   //    cin>>imie;
-   //    cout <<"podaj wplate" <<endl;
-   //    cin>>wplata;
+    int numbers3[count];
 
-   //    wpisz << imie << " "  <<wplata<<endl;
-   // }
-   // else{
-   //    //cout<<"BLAD!!: nie mozna otworzyc pliku."<<endl;
 
-   // }
-   // if(wybor==  4){
-   //    ifstream czytaj;
-   //    czytaj.open("baza.txt");
-   //    if(czytaj.good());
-   // }
-   return 0;
+    // Stwórz plik 1.txt z wartościami losowymi od 1 do 20
+    {
+        int numbers1[count];
+        int minValue1 = 1;
+        int maxValue2 = 20;
+        for (int i = 0; i < count; i++)
+        {
+            auto randomValue = rand() % (maxValue2 - minValue1) + minValue1;
+            numbers1[i] = randomValue;
+        }
+        sort(numbers1, numbers1 + count);
+        ofstream file1("1.txt");
+        for (int i = 0; i < count; i++)
+        {
+            int value = numbers1[i];
+            file1 << value << "\n";
+        }
+        file1.close();
+
+        for (int i = 0; i < count; i++)
+        {
+            auto value = numbers1[i];
+            numbers3[i] = value;
+        }
+    }
+
+
+    // Stwórz plik 2.txt z wartościami losowymi od 1 do 20
+    // Jednocześnie stwórz plik 3.txt z sumą plików 1.txt i 2.txt
+    {
+        int numbers2[count];
+        int minValue1 = 20;
+        int maxValue2 = 40;
+        for (int i = 0; i < count; i++)
+        {
+            auto randomValue = rand() % (maxValue2 - minValue1) + minValue1;
+            numbers2[i] = randomValue;
+        }
+
+        sort(numbers2, numbers2 + count);
+        
+        ofstream file2("2.txt");
+        for (int i = 0; i < count; i++)
+        {
+            int value = numbers2[i];
+            file2 << value << "\n";
+        }
+        file2.close();
+
+        ofstream file3("3.txt");
+        for (int i = 0; i < count; i++)
+        {
+            auto value = numbers2[i];
+            numbers3[i] += value;
+            file3 << numbers3[i] << "\n";
+        }
+        file3.close();
+
+    }
+
+    return 0;
 }
