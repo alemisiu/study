@@ -1,0 +1,17 @@
+@startuml
+start
+:x0 = Pi / 2;
+:x2 = PI;
+repeat
+  :y0 = f(x0), y1 = f(x1);
+  :x2 = (y1 * x0 - y0 * x1) / (y1 - y0);
+  :y2 = f(x2);
+  if (Czy błąd przybliżenia (y2) dla kandyda na pierwiastek (x2) jest mniejszy niż 0.001 ?) then (tak)
+    :Wydrukuj znalezione rozwiązanie (x2);
+    stop
+  endif
+
+  :Oblicz nowe granice zbioru szukania pierwiastka: x0, x1;
+repeat while
+
+@enduml

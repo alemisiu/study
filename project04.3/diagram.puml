@@ -1,0 +1,20 @@
+@startuml
+start
+:Przyjmij stałe zakresu xp = 0, xk = 1;
+:Wylicz matematyczą wartość całki oznaczonej S dla zakresu [xp, xk];
+:Użyj n=10 jako początkowej ilości fragmentów dziedziny całki liczonej numerycznie;
+repeat
+  :Policz numeryczną całkę s bazując na 'n' fragmentach;
+  :Policz błąd przybliżenia 'diff = abs(S - s);
+  if (Czy 'n' jest podzielne prezz 100?) then (tak)
+    :Drukuj statystyki obliczeń;
+  endif
+  if (Czy błąd przybliżenia (diff) jest mniejszy niż 0.00001 ?) then (tak)
+    break
+  endif
+
+  :Zwiększ dokładność obliczeń poprzez zwiększenie n = n + 10;
+repeat while
+
+stop
+@enduml
